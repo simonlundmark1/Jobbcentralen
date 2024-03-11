@@ -1,4 +1,5 @@
-function Job() {
+function Job({ job }) {
+
     const jobStyle = {
       height: '135px', // Set the height to 135px
       width: '1024px', // Assuming you want it to match the Header component's width
@@ -20,7 +21,7 @@ function Job() {
 
       const topLeftBoxStyle = {
         height: '40px', // Set the height to 40px
-        width: '200px', // Set the width to 200px
+        width: '205px', // Set the width to 200px
         backgroundColor: '#247A66', // Set the background color
         position: 'absolute', // Position it absolutely within the relative parent
         top: '12px', // 6px from the top edge of the parent
@@ -46,21 +47,42 @@ function Job() {
         color: '#FFFFFF', // Set the font color to white
       };
 
-    return (
-      <div style={jobStyle}>
-              <div style={innerDivStyle}></div> {/* Inner div for visual styling */}
-              <div style={topLeftBoxStyle}>
-                    <div style={innerTopLeftBarStyle}></div>
-                    <div style={innerTextStyle}>
-                        <p>Front End Developer</p>
-                    </div>
-                     {/* This is the inner top bar div */}
-</div> {/* The new top-left box */}
+      const infoTextStyle = {
+        fontFamily: 'Inter, sans-serif',
+        fontWeight: '400', // Normal font weight
+        fontSize: '14px', // Mindre fontstorlek
+        textAlign: 'left',
+        lineHeight: '118%',
+        letterSpacing: '-0.02em', // Mindre letter-spacing
+        marginLeft: '9px',
+        color: '#000000', // Svart textfärg
+      };
 
-        {/* Content for the Job component goes here */}
+ // Conditional rendering för att hantera tomma dataobjekt
+ if (!job) {
+  return <div>Ingen jobbinformation tillgänglig</div>;
+}
+
+return (
+  <div style={jobStyle}>
+    <div style={innerDivStyle}></div>
+    <div style={topLeftBoxStyle}>
+      <div style={innerTopLeftBarStyle}></div>
+      <div style={innerTextStyle}>
+        <p>{job.position}</p> 
       </div>
-    );
-  }
-  
+    </div>
+    <p style={{...infoTextStyle, marginTop: '55px', fontWeight: 'bold'}}>
+    {job.company}
+    </p>
+    <p style={{...infoTextStyle, marginTop: '-6px'}}>
+    {job.level} {job.role}  
+    </p>
+    <p style={{...infoTextStyle, marginTop: '-6px', color: 'grey'}}>
+      {job.location} - {job.contract} - {job.postedAt}
+   </p>
+  </div>
+);
+}
+
   export default Job;
-  
