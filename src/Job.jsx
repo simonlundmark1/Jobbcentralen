@@ -59,7 +59,7 @@ function Job({ job }) {
 
  // Conditional rendering för att hantera tomma dataobjekt
  if (!job) {
-  return <div>Ingen jobbinformation tillgänglig</div>;
+  return <div>Ingen jobbinfo tillgänglig!!!!!!!</div>;
 }
 
 return (
