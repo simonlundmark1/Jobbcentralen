@@ -1,11 +1,11 @@
     
 function Header() {const headerStyle = {
-  width: '1024px',
+  width: '1012px',
   height: '120px',
   border: '1px solid black',
   padding: '6px',
   boxSizing: 'border-box',
-  margin: '0 auto', // This centers the header horizontally
+  margin: '6px auto', // This centers the header horizontally
   position: 'relative', // This positions your header relative to its normal position; you might not need this depending on your layout
   top: '0', // Ensures the header is at the top; adjust as needed
   backgroundColor: '#1D6453', // Sets the background color
@@ -29,13 +29,13 @@ const loginTextStyle = {
   lineHeight: '118%',
   letterSpacing: '-0.02em', // Mindre letter-spacing
   color: 'white', // Svart textfärg
-  marginLeft: '880px', // Skjut texten till höger
+  marginLeft: '870px', // Skjut texten till höger
   marginTop: '-50px'
 };
 
 const pil = {
   marginTop: '-26px',
-  marginLeft: '-3px'
+  marginLeft: '-14px'
 }
 /* 
 const innerTextStyle = {
@@ -59,7 +59,7 @@ const innerTextStyle = {
       <div style={loginTextStyle}>Logga in </div> {/* Använd den nya loginTextStyle */}
       <div style={pil}><img src="/src/assets/pil.svg" alt="Arrow" style={{ marginLeft: '975px', height: '100%' }}/>
 </div> 
-<div style={{...loginTextStyle, fontSize: '13px', marginTop: '0px'}}>Registrera dig</div>
+<div style={{...loginTextStyle, fontSize: '13px', marginTop: '-3px'}}>Registrera dig</div>
     </div>
   );
 }

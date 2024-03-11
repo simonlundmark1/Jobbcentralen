@@ -2,13 +2,12 @@ function Job({ job }) {
 
     const jobStyle = {
       height: '135px', // Set the height to 135px
-      width: '1024px', // Assuming you want it to match the Header component's width
+      width: '1012px', // Assuming you want it to match the Header component's width
       border: '1px solid black', // Set the border to 1px solid black
       backgroundColor: '#F8F8F8', // Set the background color to #F8F8F8
       boxSizing: 'border-box', // Include padding and border in the element's size
-      marginBottom: '6px', // Add a 6px bottom margin
+  margin: 'auto auto 6px auto', // Sätter margin till 'top right bottom left'
     position: 'relative', // This positions your header relative to its normal position; you might not need this depending on your layout
-    margin: 'auto', //
     };
   
 
