@@ -26,7 +26,7 @@ const innerHeaderTopBar = {
     <div style={headerStyle}>
              {/*        <div style={innerHeaderTopBar}></div> */}
                    
-      <img src="/src/assets/group 12-2-min.svg" alt="Logo" style={{ height: '70%', marginTop: '16px', marginLeft: '10px' }} />
+      <img src="./src/assets/group 12-2-min.svg" alt="Logo" style={{ height: '70%', marginTop: '16px', marginLeft: '10px' }} />
     </div>
   );
 }
