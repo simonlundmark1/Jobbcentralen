@@ -5,31 +5,33 @@ function Header() {const headerStyle = {
   border: '1px solid black',
   padding: '6px',
   boxSizing: 'border-box',
-  margin: '6px auto', // This centers the header horizontally
-  position: 'relative', // This positions your header relative to its normal position; you might not need this depending on your layout
-  top: '0', // Ensures the header is at the top; adjust as needed
-  backgroundColor: '#1D6453', // Sets the background color
-  marginBottom: '6px', // Add a 6px bottom margin
+  margin: '6px auto', 
+  position: 'relative', 
+  top: '0', 
+  backgroundColor: '#1D6453',
+  marginBottom: '6px',
   
 };
+
 /* 
 const innerHeaderTopBar = {
   top: '-6px',
   height: '6px',
   backgroundColor: '#164D40',
-  width: '100%', // Takes the full width of its parent
+  width: '100%', 
 };
 
- */
+*/
+
 const loginTextStyle = {
   fontFamily: 'Inter, sans-serif',
-  fontWeight: 'bold', // Normal font weight
-  fontSize: '22px', // Mindre fontstorlek
+  fontWeight: 'bold', 
+  fontSize: '22px', 
   textAlign: 'left',
   lineHeight: '118%',
-  letterSpacing: '-0.02em', // Mindre letter-spacing
-  color: 'white', // Svart textfärg
-  marginLeft: '870px', // Skjut texten till höger
+  letterSpacing: '-0.02em',
+  color: 'white', 
+  marginLeft: '870px', 
   marginTop: '-50px'
 };
 
@@ -40,14 +42,14 @@ const pil = {
 /* 
 const innerTextStyle = {
   fontFamily: 'Inter, sans-serif',
-  fontWeight: '700', // Bold font weight, equivalent to 'bold'
+  fontWeight: '700', /
   fontSize: '20px',
   textAlign: 'left',
   lineHeight: '118%',
   letterSpacing: '-0.04em',
-  marginLeft: '6px', // Margin to push the text a bit to the right
+  marginLeft: '6px',
   marginTop: '-4px',
-  color: '#FFFFFF', // Set the font color to white
+  color: '#FFFFFF', 
 };
  */
 
@@ -56,7 +58,7 @@ const innerTextStyle = {
              {/*        <div style={innerHeaderTopBar}></div> */}
                    
       <img src="/src/assets/group 12-2-min.svg" alt="Logo" style={{ height: '70%', marginTop: '16px', marginLeft: '10px' }} />
-      <div style={loginTextStyle}>Logga in </div> {/* Använd den nya loginTextStyle */}
+      <div style={loginTextStyle}>Logga in </div> {}
       <div style={pil}><img src="/src/assets/pil.svg" alt="Arrow" style={{ marginLeft: '975px', height: '100%' }}/>
 </div> 
 <div style={{...loginTextStyle, fontSize: '13px', marginTop: '-3px'}}>Registrera dig</div>

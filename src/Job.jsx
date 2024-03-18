@@ -1,66 +1,81 @@
-function Job({ job }) {
+function formatDate(dateString) {
+  const months = [
+    'Januari', 'Februari', 'Mars', 'April', 'Maj', 'Juni',
+    'Juli', 'Augusti', 'September', 'Oktober', 'November', 'December'
+  ];
+
+  const date = new Date(dateString);
+  return `${date.getDate()} ${months[date.getMonth()]}`;
+}
+
+function Job({ job, index, isEven}) {
+
+  const greenShade = 120 - (index * 10); 
 
     const jobStyle = {
-      height: '135px', // Set the height to 135px
-      width: '1012px', // Assuming you want it to match the Header component's width
-      border: '1px solid black', // Set the border to 1px solid black
-      backgroundColor: '#F8F8F8', // Set the background color to #F8F8F8
-      boxSizing: 'border-box', // Include padding and border in the element's size
-  margin: 'auto auto 6px auto', // Sätter margin till 'top right bottom left'
-    position: 'relative', // This positions your header relative to its normal position; you might not need this depending on your layout
+      height: '135px', 
+      width: '1012px',
+      border: '1px solid black', 
+      backgroundColor: '#F8F8+8',
+/*     backgroundColor: isEven ? '#F8F8+8' : '#F8F8+8', // Mörkare bakgrund för udda index
+ */      boxSizing: 'border-box', 
+  margin: 'auto auto 6px auto', 
+    position: 'relative',
     };
   
 
     const innerDivStyle = {
         height: '6px',
-        width: '100%', // This makes the inner div as wide as its parent
+        width: '100%', 
         backgroundColor: '#E8E8E8',
 
       };
 
       const topLeftBoxStyle = {
-        height: '40px', // Set the height to 40px
-        width: '205px', // Set the width to 200px
-        backgroundColor: '#247A66', // Set the background color
-        position: 'absolute', // Position it absolutely within the relative parent
-        top: '12px', // 6px from the top edge of the parent
-        left: '6px', // 6px from the left edge of the parent
-        border: '1px solid black'
+        height: '40px', 
+        width: '98.5%', 
+        position: 'absolute', 
+        top: '12px',
+        left: '6px',
+        border: '1px solid black',
+        whiteSpace: 'nowrap',
+        backgroundColor: `rgb(29, ${greenShade}, 83)`,
       };
 
       const innerTopLeftBarStyle = {
         height: '6px',
-        backgroundColor: '#1D6453',
-        width: '100%', // Takes the full width of its parent
+        backgroundColor: `rgb(19, ${greenShade - 15}, 73)`, 
+        width: '100%', 
       };
 
       const innerTextStyle = {
         fontFamily: 'Inter, sans-serif',
-        fontWeight: '700', // Bold font weight, equivalent to 'bold'
+        fontWeight: '700',
         fontSize: '16px',
         textAlign: 'left',
         lineHeight: '118%',
         letterSpacing: '-0.04em',
-        marginLeft: '6px', // Margin to push the text a bit to the right
+        marginLeft: '6px', 
         marginTop: '-4px',
-        color: '#FFFFFF', // Set the font color to white
+        color: '#FFFFFF', 
       };
 
       const infoTextStyle = {
         fontFamily: 'Inter, sans-serif',
-        fontWeight: '400', // Normal font weight
-        fontSize: '14px', // Mindre fontstorlek
+        fontWeight: '400',
+        fontSize: '14px', 
         textAlign: 'left',
         lineHeight: '118%',
-        letterSpacing: '-0.02em', // Mindre letter-spacing
+        letterSpacing: '-0.02em', 
         marginLeft: '9px',
-        color: '#000000', // Svart textfärg
+        marginTop: '30px',
+        color: '#000000', 
       };
 
  // Conditional rendering för att hantera tomma dataobjekt
- if (!job) {
-  return <div>Ingen jobbinfo tillgänglig!!!!!!!</div>;
-}
+  if (!job || !job.headline || !job.employer || !job.employer.name || !job.application_deadline) {
+    return <p>Ingen jobbinfo tillgänglig!</p>;
+  }
 
 return (
   <div style={jobStyle}>
@@ -68,18 +83,20 @@ return (
     <div style={topLeftBoxStyle}>
       <div style={innerTopLeftBarStyle}></div>
       <div style={innerTextStyle}>
-        <p>{job.position}</p> 
+
+        <p>{job.headline}</p>
+       
+        <p style={{...infoTextStyle, marginTop: '35px', marginLeft: '-4px' }}>{job.workplace_address?.city ?? 'Plats ej tillgänglig'}</p>
       </div>
     </div>
     <p style={{...infoTextStyle, marginTop: '55px', fontWeight: 'bold'}}>
-    {job.company}
+      {job.employer?.name ?? 'Företagsnamn ej tillgängligt'}
     </p>
-    <p style={{...infoTextStyle, marginTop: '-6px'}}>
-    {job.level} {job.role}  
+
+    <p style={{...infoTextStyle, marginTop: '30px', color: 'grey'}}>
+      Sista ansökningsdatum: {formatDate(job.application_deadline)}
+
     </p>
-    <p style={{...infoTextStyle, marginTop: '-6px', color: 'grey'}}>
-      {job.location} - {job.contract} - {job.postedAt}
-   </p>
   </div>
 );
 }
