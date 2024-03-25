@@ -1,29 +1,15 @@
 import React, { useState, useEffect } from 'react';
-import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
-import Header from './Header.jsx'; 
-import Categories from './Categories.jsx'; 
-import Job from './Job'; 
-import JobsList from './JobsList.jsx';
-import SignInForm from './SignInForm';
-import SignUpForm from './SignUpForm';
-import { AuthProvider } from './AuthContext';
-import './App.css'; 
-import { createRoot } from 'react-dom/client';
+import Header from './Header';
+import Categories from './Categories';
+import Job from './Job';
 
-
-const mainContainerStyle = {
-  maxWidth: '1024px',
-  margin: '0 auto', // Centrerar huvudcontainern
-  backgroundColor: 'white',
-};
-
-function App() {
+function JobsList() {
   const [searchTerm, setSearchTerm] = useState('');
   const [jobs, setJobs] = useState([]);
   const [selectedCategory, setSelectedCategory] = useState({ role: '', level: '', location: '' });
 
   useEffect(() => {
-    fetchJobs(""); 
+    fetchJobs(""); // Hämta alla jobb när komponenten monteras, eller använd en standard sökterm
   }, []);
 
   const handleSearch = (term) => {
@@ -32,7 +18,7 @@ function App() {
 
   const handleEnterSearch = (e) => {
     if (e.key === 'Enter') {
-      fetchJobs(e.target.value);
+      fetchJobs(e.target.value); // Anropa fetchJobs när Enter trycks
     }
   };
 
@@ -43,19 +29,22 @@ function App() {
   const fetchJobs = async (searchTerm) => {
     const apiUrl = `https://jobsearch.api.jobtechdev.se/search?q=${encodeURIComponent(searchTerm)}`;
     try {
-      const response = await fetch(apiUrl);
-
+      const response = await fetch(apiUrl, {
+        headers: {
+          'accept': 'application/json',
+        },
+      });
       if (!response.ok) {
         throw new Error(`API call failed: ${response.status}`);
       }
-
       const data = await response.json();
-      setJobs(data.hits);
+      setJobs(data.hits); // Jobbannonser finns i 'hits'
     } catch (error) {
       console.error("Error fetching jobs:", error);
     }
   };
 
+  // Filtrering baserad på kategori
   const filteredJobs = jobs.filter(job => (
     (selectedCategory.role ? job.role === selectedCategory.role : true) &&
     (selectedCategory.level ? job.level === selectedCategory.level : true) &&
@@ -63,27 +52,19 @@ function App() {
   ));
 
   return (
-
-
-    <React.StrictMode>
-
-    <AuthProvider>
-      <Router>
-        <div style={mainContainerStyle}>
-          <Header />
-          <Routes>
-            <Route path="/signin" element={<SignInForm />} />
-            <Route path="/signup" element={<SignUpForm />} />
-            <Route path="/jobs" element={<JobsList />} />
-           <Route path="/" element={<JobsList />} /> {/* Lägger till denna rad */}
-          </Routes>
-        </div>
-      </Router>
-    </AuthProvider>
-
-    </React.StrictMode>
-
+    <div>
+ 
+      <Categories
+        onSearch={handleSearch}
+        onEnterSearch={handleEnterSearch}
+        onCategoryChange={handleCategoryChange}
+        jobs={filteredJobs}  // Skicka filtrerade jobbannonser som en prop
+      />
+      {filteredJobs.map((job, index) => (
+        <Job key={index} job={job} index={index} isEven={index % 2 === 0} />
+      ))}
+    </div>
   );
 }
 
-export default App;
+export default JobsList;
