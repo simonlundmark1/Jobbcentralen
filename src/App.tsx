@@ -10,6 +10,12 @@ import { AuthProvider } from './AuthContext';
 import './App.css'; 
 import { createRoot } from 'react-dom/client';
 
+interface Job {
+  role: string;
+  level: string;
+  location: string;
+}
+
 
 const mainContainerStyle = {
   maxWidth: '1024px',
@@ -19,28 +25,28 @@ const mainContainerStyle = {
 
 function App() {
   const [searchTerm, setSearchTerm] = useState('');
-  const [jobs, setJobs] = useState([]);
+  const [jobs, setJobs] = useState<Job[]>([]);  // This line seems to be outside of any functional component or incorrectly placed
   const [selectedCategory, setSelectedCategory] = useState({ role: '', level: '', location: '' });
 
   useEffect(() => {
     fetchJobs(""); 
   }, []);
 
-  const handleSearch = (term) => {
+  const handleSearch = (term: string): void => {
     setSearchTerm(term);
-  };
+};
 
-  const handleEnterSearch = (e) => {
+const handleEnterSearch = (e: React.KeyboardEvent<HTMLInputElement>): void => {
     if (e.key === 'Enter') {
-      fetchJobs(e.target.value);
+        fetchJobs(e.currentTarget.value);
     }
-  };
+};
 
-  const handleCategoryChange = (categoryType, value) => {
+const handleCategoryChange = (categoryType: string, value: string): void => {
     setSelectedCategory(prev => ({ ...prev, [categoryType]: value }));
-  };
+};
 
-  const fetchJobs = async (searchTerm) => {
+const fetchJobs = async (searchTerm: string): Promise<void> => {
     const apiUrl = `https://jobsearch.api.jobtechdev.se/search?q=${encodeURIComponent(searchTerm)}`;
     try {
       const response = await fetch(apiUrl);

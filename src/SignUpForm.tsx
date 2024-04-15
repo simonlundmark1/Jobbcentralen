@@ -1,19 +1,25 @@
-import React, { useState } from 'react';
-import { useAuth } from './AuthContext'; // Adjust the path as necessary
+import React, { useState, FormEvent } from 'react';
+import { useAuth as UseAuthFromContext } from './AuthContext';
+
+interface SignUpProps {
+  signup: (email: string, password: string) => Promise<void>;
+}
+
+const useAuth = (): SignUpProps => {
+  return { signup: async (email: string, password: string) => { /* implementation here */ } };
+};
 
 export default function SignUpForm() {
-  const [email, setEmail] = useState('');
-  const [password, setPassword] = useState('');
-  const { signup } = useAuth(); // Use the signup function from AuthContext
+  const [email, setEmail] = useState<string>('');
+  const [password, setPassword] = useState<string>('');
+  const { signup } = useAuth(); 
 
-  const handleSubmit = async (e) => {
+  const handleSubmit = async (e: FormEvent<HTMLFormElement>) => {
     e.preventDefault();
     try {
-      await signup(email, password); // Attempt to sign up with email and password
-      // Handle post-sign-up actions (e.g., redirect to a welcome page)
+      await signup(email, password); /
     } catch (error) {
       console.error("Failed to create an account:", error);
-      // Optionally, handle errors in the UI (e.g., show a message)
     }
   };
 

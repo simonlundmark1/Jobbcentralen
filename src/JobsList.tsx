@@ -3,31 +3,51 @@ import Header from './Header';
 import Categories from './Categories';
 import Job from './Job';
 
+interface Category {
+  role: string;
+  level: string;
+  location: string;
+}
+
+interface Job {
+  role: string;
+  level: string;
+  location: string;
+  headline?: string;
+  employer?: {
+    name?: string;
+  };
+  application_deadline?: string;
+  workplace_address?: {
+    city?: string;
+  };
+}
+
 function JobsList() {
   const [searchTerm, setSearchTerm] = useState('');
-  const [jobs, setJobs] = useState([]);
-  const [selectedCategory, setSelectedCategory] = useState({ role: '', level: '', location: '' });
+  const [jobs, setJobs] = useState<Job[]>([]);
+  const [selectedCategory, setSelectedCategory] = useState<Category>({ role: '', level: '', location: '' });
 
   useEffect(() => {
     fetchJobs(""); // Hämta alla jobb när komponenten monteras, eller använd en standard sökterm
   }, []);
 
-  const handleSearch = (term) => {
+  const handleSearch = (term: string) => {
     setSearchTerm(term);
-  };
+};
 
-  const handleEnterSearch = (e) => {
-    if (e.key === 'Enter') {
-      fetchJobs(e.target.value); // Anropa fetchJobs när Enter trycks
-    }
-  };
+const handleEnterSearch = (e: React.KeyboardEvent<HTMLInputElement>) => {
+  if (e.key === 'Enter') {
+      fetchJobs(e.currentTarget.value);
+  }
+};
 
-  const handleCategoryChange = (categoryType, value) => {
-    setSelectedCategory(prev => ({ ...prev, [categoryType]: value }));
-  };
+const handleCategoryChange = (categoryType: string, value: string) => {
+  setSelectedCategory(prev => ({ ...prev, [categoryType]: value }));
+};
 
-  const fetchJobs = async (searchTerm) => {
-    const apiUrl = `https://jobsearch.api.jobtechdev.se/search?q=${encodeURIComponent(searchTerm)}`;
+const fetchJobs = async (searchTerm: string) => {
+  const apiUrl = `https://jobsearch.api.jobtechdev.se/search?q=${encodeURIComponent(searchTerm)}`;
     try {
       const response = await fetch(apiUrl, {
         headers: {
