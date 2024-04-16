@@ -17,7 +17,7 @@ export default function SignUpForm() {
   const handleSubmit = async (e: FormEvent<HTMLFormElement>) => {
     e.preventDefault();
     try {
-      await signup(email, password); /
+      await signup(email, password);
     } catch (error) {
       console.error("Failed to create an account:", error);
     }

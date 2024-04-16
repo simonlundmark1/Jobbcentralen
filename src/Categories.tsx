@@ -3,7 +3,9 @@
   import { useDispatch, useSelector } from 'react-redux';
   import { setCategoryFilter, fetchJobs } from './features/jobs/jobsSlice';
   import { RootState, AppDispatch } from './store'; // Import AppDispatch
-  
+  import thunk from 'redux-thunk';
+  import { createStore, applyMiddleware, combineReducers } from 'redux';
+
 /* 
 
 const jobs = useSelector((state: RootState) => state.jobs.entities);
@@ -31,16 +33,17 @@ const loading = useSelector((state: RootState) => state.jobs.loading); */
   
 
     const handleSearch = (term: string) => {
-      const params = { searchTerm: term, filters: {} };  
+      const params = { searchTerm: term, filters: {} };
       console.log("Searching with params:", params);
-      dispatch(fetchJobs(params));
+      dispatch(fetchJobs(params));  // Corrected
   };
   
- 
-    const fetchJobs = async (params: { searchTerm: string, filters: any }) => {
-      console.log("Fetching jobs with parameters:", params);  /
-
-    };
+  const fetchJobs = (params: { searchTerm: string, filters: any }) => async (dispatch: AppDispatch) => {
+    console.log("Fetching jobs with parameters:", params);
+    // Example of dispatching an action after fetching data
+    // const data = await fetchDataSomehow(params);
+    // dispatch({ type: 'SET_JOB_DATA', payload: data });
+};
     
 
     const handleEnterSearch = (e: React.KeyboardEvent<HTMLInputElement>) => {

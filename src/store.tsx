@@ -1,5 +1,7 @@
 import { configureStore } from '@reduxjs/toolkit';
 import jobsReducer from './features/jobs/jobsSlice';
+import thunk from 'redux-thunk';
+import { Provider } from 'react-redux';
 
 export const store = configureStore({
   reducer: {
