@@ -1,5 +1,11 @@
 import { createSlice, createAsyncThunk, PayloadAction } from '@reduxjs/toolkit';
 
+export enum CategoryType {
+    Location = "location",
+    Level = "level",
+    Role = "role"
+}
+
 interface Job {
     id: number;
     title: string;
@@ -39,8 +45,7 @@ export const fetchJobs = createAsyncThunk(
             const data = await response.json();
             return data.hits as Job[];
         } catch (error) {
-            return rejectWithValue(error.message);
-        }
+            return rejectWithValue((error as Error).message);        }
     }
 );
 
@@ -49,9 +54,11 @@ const jobsSlice = createSlice({
     name: 'jobs',
     initialState,
     reducers: {
-        setCategoryFilter(state, action: PayloadAction<{categoryType: string, value: string}>) {
+        setCategoryFilter(state, action: PayloadAction<{categoryType: CategoryType, value: string}>) {
+            // Use the enum to ensure type safety
             state.currentFilters[action.payload.categoryType] = action.payload.value;
         }
+        
     },
     extraReducers: (builder) => {
         builder

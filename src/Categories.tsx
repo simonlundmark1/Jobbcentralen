@@ -10,6 +10,12 @@
 
 const jobs = useSelector((state: RootState) => state.jobs.entities);
 const loading = useSelector((state: RootState) => state.jobs.loading); */
+enum CategoryType {
+  Location = "location",
+  Level = "level",
+  Role = "role"
+}
+
 
   interface CategoriesProps {
     onSearch: (term: string) => void;
@@ -51,26 +57,27 @@ const loading = useSelector((state: RootState) => state.jobs.loading); */
         handleSearch(searchTerm);
       }
     };
-    
-    const handleCategoryChange = (categoryType: string, value: string) => {
-      dispatch(setCategoryFilter({categoryType, value}));
+
+    const handleCategoryChange = (categoryType: CategoryType, value: string) => {
+      dispatch(setCategoryFilter({ categoryType, value }));
       handleSearch(searchTerm);
     };
-  
+    
     const handleRoleChange = (e: React.ChangeEvent<HTMLSelectElement>) => {
       setRole(e.target.value);
-      handleCategoryChange('role', e.target.value);
+      handleCategoryChange(CategoryType.Role, e.target.value); // Correct usage of enum for type safety
     };
+    
   
-    const handleLevelChange = (e: React.ChangeEvent<HTMLSelectElement>) => {
-      setLevel(e.target.value);
-      handleCategoryChange('level', e.target.value);
-    };
+const handleLevelChange = (e: React.ChangeEvent<HTMLSelectElement>) => {
+  setLevel(e.target.value);
+  handleCategoryChange(CategoryType.Level, e.target.value); // Now correctly typed
+};
   
-    const handleLocationChange = (e: React.ChangeEvent<HTMLSelectElement>) => {
-      setLocation(e.target.value);
-      handleCategoryChange('location', e.target.value);
-    };
+const handleLocationChange = (e: React.ChangeEvent<HTMLSelectElement>) => {
+  setLocation(e.target.value);
+  handleCategoryChange(CategoryType.Location, e.target.value); // Now correctly typed
+};
   
 
     const categoriesStyle = {
