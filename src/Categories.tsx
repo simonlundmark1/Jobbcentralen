@@ -19,9 +19,9 @@ const loading = useSelector((state: RootState) => state.jobs.loading); */
   }
 
 
-  const Categories = () => {
+  const Categories: React.FC<CategoriesProps> = ({ onSearch, onEnterSearch, onCategoryChange, jobs }) => {
     const dispatch = useDispatch<AppDispatch>(); // Use AppDispatch type here
-    const jobs = useSelector((state: RootState) => state.jobs.entities);
+    
     const loading = useSelector((state: RootState) => state.jobs.loading);
 
 

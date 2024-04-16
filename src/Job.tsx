@@ -1,6 +1,19 @@
   import styles from './css/JobStyles.module.css';
 
-
+  export interface Job {
+    role: string;
+    level: string;
+    location: string;
+    headline?: string;
+    employer?: {
+      name?: string;
+    };
+    application_deadline?: string;
+    workplace_address?: {
+      city?: string;
+    };
+  }
+  
 
   export interface JobType {
     headline?: string;
