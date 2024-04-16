@@ -1,5 +1,6 @@
 Fånga den vardagliga ångesten med Jobbcentralen! Känn känslan av vårdcentral, telefonkö och byråkrati!
 
+https://main--jobbcentralen.netlify.app/
 
 Frågor:
 1: Det är ett verktyg för att förenkla användningen av Redux i projekt, den sköter vissa funktioner automatiskt, tex skapa reducers. Den hjälper en att skriva mindre kod och gör det lättare att organisera den.
