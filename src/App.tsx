@@ -75,7 +75,24 @@ const fetchJobs = async (searchTerm: string): Promise<void> => {
 
     <AuthProvider>
       <Router>
+      <div style={{...mainContainerStyle, position: 'relative'}}>
+            {/* Background Video */}
+            <video autoPlay loop muted style={{
+              position: 'absolute',
+              width: '100%',
+              left: '50%',
+              top: '50%',
+              height: '100%',
+              objectFit: 'cover',
+              transform: 'translate(-50%, -50%)',
+              zIndex: '-1', // Ensure it stays in the background
+            }}>
+              <source src="/skrap.mp4" type="video/mp4"/>
+              Your browser does not support the video tag.
+            </video>
+
         <div style={mainContainerStyle}>
+          
           <Header />
           <Routes>
             <Route path="/signin" element={<SignInForm />} />
@@ -83,6 +100,7 @@ const fetchJobs = async (searchTerm: string): Promise<void> => {
             <Route path="/jobs" element={<JobsList />} />
            <Route path="/" element={<JobsList />} /> {/* Lägger till denna rad */}
           </Routes>
+        </div>
         </div>
       </Router>
     </AuthProvider>
