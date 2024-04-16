@@ -73,7 +73,7 @@ function Header() {
   return (
     <div style={headerStyle}>
       <Link to="/">
-        <img src="./public/group 12-2-min.svg" alt="Logo" style={logoStyle} />
+        <img src="/group 12-2-min.svg" alt="Logo" style={logoStyle} />
       </Link>
       <div>
         {currentUser ? (
@@ -88,7 +88,7 @@ function Header() {
           <>
             <Link to="/signin" style={{ textDecoration: 'none', display: 'flex', alignItems: 'center' }}>
               <div style={loginTextStyle}>Logga in</div>
-              <img src="./public/pil.svg" alt="Arrow" style={arrowStyle} />
+              <img src="/pil.svg" alt="Arrow" style={arrowStyle} />
             </Link>
             <Link to="/signup" style={{ textDecoration: 'none' }}>
               <div style={registerTextStyle}>Registrera dig</div>
