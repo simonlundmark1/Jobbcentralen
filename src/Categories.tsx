@@ -18,6 +18,7 @@ enum CategoryType {
 
 
   interface CategoriesProps {
+    
     onSearch: (term: string) => void;
     onEnterSearch: (e: React.KeyboardEvent<HTMLInputElement>) => void;
     onCategoryChange: (categoryType: string, value: string) => void;
@@ -39,25 +40,19 @@ enum CategoryType {
   
 
     const handleSearch = (term: string) => {
+      console.log("Handling search with term:", term);  // Debugging log
       const params = { searchTerm: term, filters: {} };
-      console.log("Searching with params:", params);
-      dispatch(fetchJobs(params));  // Corrected
+      dispatch(fetchJobs(params));
   };
-  
-  const fetchJobs = (params: { searchTerm: string, filters: any }) => async (dispatch: AppDispatch) => {
-    console.log("Fetching jobs with parameters:", params);
-    // Example of dispatching an action after fetching data
-    // const data = await fetchDataSomehow(params);
-    // dispatch({ type: 'SET_JOB_DATA', payload: data });
-};
-    
+      
 
     const handleEnterSearch = (e: React.KeyboardEvent<HTMLInputElement>) => {
+      console.log("Enter key pressed");  // Debugging log
       if (e.key === 'Enter') {
-        handleSearch(searchTerm);
+          console.log("Fetching jobs with searchTerm:", searchTerm);  // More detailed log
+          handleSearch(searchTerm);
       }
-    };
-
+  };
     const handleCategoryChange = (categoryType: CategoryType, value: string) => {
       dispatch(setCategoryFilter({ categoryType, value }));
       handleSearch(searchTerm);

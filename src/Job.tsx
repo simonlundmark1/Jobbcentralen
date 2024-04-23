@@ -26,6 +26,12 @@
     };
   }
 
+  interface JobProps {
+    job: Job;
+    index: number;
+    isEven: boolean;
+  }
+  
   function formatDate(dateString: string): string {
     const months = [
       'Januari', 'Februari', 'Mars', 'April', 'Maj', 'Juni',
@@ -36,16 +42,6 @@
     return `${date.getDate()} ${months[date.getMonth()]}`;
   }
 
-  interface JobProps {
-    job: {
-      headline?: string;
-      employer?: { name?: string };
-      application_deadline?: string;
-      workplace_address?: { city?: string };
-    };
-    index: number;
-    isEven: boolean;
-  }
   /* 
   const Job: React.FC<JobProps> = ({ job, index, isEven }) => {
     return (
