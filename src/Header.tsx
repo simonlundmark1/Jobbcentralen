@@ -1,5 +1,3 @@
-
-
 import React, { useContext, createContext  } from 'react'; 
 import { Link, useNavigate } from 'react-router-dom';
 import AuthContext from './AuthContext.jsx'; 
@@ -34,15 +32,14 @@ function Header() {
   };
 
   const logoStyle = {
-    height: '70%',
-    marginLeft: '10px',
+    height: '6rem',
     cursor: 'pointer',
   };
 
   const loginTextStyle = {
     fontFamily: 'Inter, sans-serif',
     fontWeight: 'bold', 
-    fontSize: '22px', 
+    fontSize: '24px', 
     color: 'white',
     cursor: 'pointer',
   };
@@ -55,8 +52,8 @@ function Header() {
 
   const arrowStyle = {
     height: '100%',
-    marginLeft: '4px',
-    marginTop: '2px'
+    marginRight: '1rem',
+    marginTop: '4px'
   };
 
   const { currentUser, signout } = useContext<AuthContextType>(AuthContextLocal);
@@ -73,7 +70,7 @@ function Header() {
   return (
     <div style={headerStyle}>
       <Link to="/">
-        <img src="/group 12-2-min.svg" alt="Logo" style={logoStyle} />
+        <img src="/logo.png" alt="Logo" style={logoStyle} />
       </Link>
       <div>
         {currentUser ? (
@@ -86,7 +83,7 @@ function Header() {
           </>
         ) : (
           <>
-            <Link to="/signin" style={{ textDecoration: 'none', display: 'flex', alignItems: 'center' }}>
+            <Link to="/signin" style={{ marginTop: '2rem', textDecoration: 'none', display: 'flex', alignItems: 'center' }}>
               <div style={loginTextStyle}>Logga in</div>
               <img src="/pil.svg" alt="Arrow" style={arrowStyle} />
             </Link>

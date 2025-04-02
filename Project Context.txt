@@ -1,0 +1,36 @@
+# Project Context: Jobbcentralen
+
+## Current State
+
+This is a web application built using React, Vite, TypeScript, and Redux Toolkit for state management. It fetches job listings from an API and displays them to the user. Users can filter and search for jobs based on criteria like role, level, and location. Firebase is integrated, likely for user authentication. Styling is primarily handled by Tailwind CSS.
+
+### Key Files and Directories:
+
+*   `/src`: Contains the main source code.
+    *   `main.tsx`: Application entry point.
+    *   `App.tsx`: Root React component, likely sets up routing and main layout.
+    *   `store.tsx`: Configures the Redux store.
+    *   `features/`: Contains Redux slices (e.g., `jobsSlice` for job data fetching and filtering).
+    *   `components/`: (Likely contains reusable UI components).
+    *   `Categories.tsx`: Component responsible for displaying search/filter options.
+    *   `JobsList.tsx`: Component responsible for displaying the list of fetched jobs.
+    *   `Job.tsx`: Component representing a single job listing item and likely defining the `JobType` interface.
+    *   `AuthContext.tsx`, `SignInForm.tsx`, `SignUpForm.tsx`: Components related to user authentication using Firebase.
+    *   `firebase.config.ts`: Firebase configuration details.
+    *   `index.css`: Global CSS styles.
+*   `/public`: Static assets.
+*   `index.html`: Main HTML entry point for Vite.
+*   `package.json`: Lists project dependencies and scripts.
+*   `vite.config.ts`: Vite build tool configuration.
+*   `tailwind.config.ts`: Tailwind CSS configuration.
+*   `tsconfig.json`: TypeScript compiler configuration.
+
+## Future Goals
+
+The project aims to add functionality for user profiles. Users should be able to:
+1.  Create a profile.
+2.  Upload or input their CV details.
+3.  Add a template cover letter.
+4.  Specify their job preferences (area, type of job).
+
+Based on this profile information and the details of a selected job listing, the application should feature a button that generates a tailored cover letter using the user's CV and template cover letter as a base, adapted to the specific job description. 
