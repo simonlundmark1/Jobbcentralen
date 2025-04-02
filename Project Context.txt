@@ -2,7 +2,7 @@
 
 ## Current State
 
-This is a web application built using React, Vite, TypeScript, and Redux Toolkit for state management. It fetches job listings from an API and displays them to the user. Users can filter and search for jobs based on criteria like role, level, and location. Firebase is integrated, likely for user authentication. Styling is primarily handled by Tailwind CSS.
+This is a web application built using SvelteKit, Svelte 4, TypeScript, and Bits UI for UI components. It fetches job listings from an API and displays them to the user. Users can filter and search for jobs based on criteria like role, level, and location. Firebase is integrated, likely for user authentication. Styling is primarily handled by vanilla Tailwind CSS.
 
 ### Key Files and Directories:
 
@@ -21,8 +21,10 @@ This is a web application built using React, Vite, TypeScript, and Redux Toolkit
 *   `/public`: Static assets.
 *   `index.html`: Main HTML entry point for Vite.
 *   `package.json`: Lists project dependencies and scripts.
+*   `svelte.config.js`: SvelteKit configuration (if it exists, otherwise defaults are used).
 *   `vite.config.ts`: Vite build tool configuration.
 *   `tailwind.config.ts`: Tailwind CSS configuration.
+*   `postcss.config.js`: PostCSS configuration (often used with Tailwind).
 *   `tsconfig.json`: TypeScript compiler configuration.
 
 ## Future Goals
@@ -33,4 +35,9 @@ The project aims to add functionality for user profiles. Users should be able to
 3.  Add a template cover letter.
 4.  Specify their job preferences (area, type of job).
 
-Based on this profile information and the details of a selected job listing, the application should feature a button that generates a tailored cover letter using the user's CV and template cover letter as a base, adapted to the specific job description. 
+Based on this profile information and the details of a selected job listing, the application should feature a button that generates a tailored cover letter using the user's CV and template cover letter as a base, adapted to the specific job description.
+
+## Recent Changes
+*   Implemented OpenAI API integration to generate cover letters based on user profile and job details.
+*   Added `.env` file to store sensitive keys like the OpenAI API key.
+*   Ensured `.env` is included in `.gitignore` to prevent accidental commits of secrets.
